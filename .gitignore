@@ -1,0 +1,111 @@
+# Scan Results and Output Files
+lan_scan_results.*
+scan_results.*
+network_scan_results.*
+*.scan
+
+# Log Files
+*.log
+logs/
+scan_logs/
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+tmp/
+.DS_Store
+Thumbs.db
+
+# Compiled Binaries and Scripts
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+scanner
+network-scanner
+
+# Environment and Configuration Files
+.env
+.env.local
+.env.production
+config.env
+*.conf
+
+# Cache and Database Files
+*.cache
+*.db
+*.sqlite
+*.sqlite3
+.cache/
+
+# Node.js (if using any JS dependencies)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if using any Python scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Backup Files
+*.bak
+*.backup
+*.old
+*~
+
+# Archive Files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Custom scan output
+*_results.*
+!lan_scan_results.json
+!README.md
+
+# OUI database files (can be regenerated)
+oui.dat
+oui.db
