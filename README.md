@@ -2,7 +2,7 @@
 
 > **TL;DR**: A powerful network reconnaissance tool that discovers devices, identifies vendors, scans ports, and grabs service banners. Perfect for security audits and network administration.
 
-![Local Network Scanner Banner](banner.svg)
+![Local Network Scanner Banner](banner.png)
 
 A comprehensive network reconnaissance tool designed for **security professionals** and **network administrators**. This utility performs automated discovery and enumeration of devices within local network segments, providing detailed intelligence on active hosts, services, and device characteristics.
 
