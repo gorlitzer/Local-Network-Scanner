@@ -1,80 +1,122 @@
 # Local Network Scanner
 
-This project contains a shell script (`scanner.sh`) for scanning devices on your local network. The script discovers active hosts, identifies device vendors using IEEE OUI database, probes open ports and service banners, and displays results in a visually appealing ASCII table with device classification and icons.
+A comprehensive network reconnaissance tool designed for security professionals and network administrators. This utility performs automated discovery and enumeration of devices within local network segments, providing detailed intelligence on active hosts, services, and device characteristics.
 
-## Features
+## Overview
 
-- **Host Discovery**: Uses nmap for efficient host discovery, with ping sweep fallback
-- **Vendor Identification**: Automatically identifies device manufacturers using IEEE OUI database
-- **Port Scanning**: Scans common ports (22, 23, 53, 80, 443, 139, 445, 3389, 8080, etc.) with optional deep scanning
-- **Service Banner Grabbing**: Attempts to identify running services on open ports
-- **Device Classification**: Categorizes devices as PCs, routers, Raspberry Pis, phones, etc. with emoji icons
-- **Multiple Output Formats**: Saves results as JSON and CSV files
-- **Wake-on-LAN Support**: Can send WOL magic packets to wake sleeping devices
+The Local Network Scanner conducts multi-phase network reconnaissance including host discovery, port scanning, service enumeration, and device fingerprinting. Results are presented in structured formats suitable for integration with other security tools and workflows.
 
-## Usage
+## Key Capabilities
 
-### Basic Scan
-```sh
-./scanner.sh
-```
+### Host Discovery & Enumeration
+- **Network Discovery**: Utilizes nmap for efficient host discovery with fallback to ICMP ping sweeps
+- **Device Identification**: Automatic vendor identification through IEEE OUI database lookup
+- **Service Probing**: Comprehensive port scanning with service banner extraction
 
-### Scan Specific Network
-```sh
-./scanner.sh 192.168.1.0/24
-```
+### Advanced Analysis
+- **Port Scanning**: Systematic enumeration of common service ports (22, 23, 53, 80, 443, 139, 445, 3389, 8080) with optional extended scanning
+- **Service Fingerprinting**: Banner grabbing and protocol analysis for service identification
+- **Device Classification**: Intelligent categorization of discovered devices with visual indicators
 
-### Deep Scan (More Ports, Longer Banner Grabs)
-```sh
-./scanner.sh --deep
-```
+### Output & Integration
+- **Structured Data**: JSON and CSV export formats for downstream analysis
+- **Visual Reporting**: Formatted terminal output with device metadata
+- **Wake-on-LAN**: Network-powered device activation support
 
-### Custom Output Prefix
-```sh
-./scanner.sh --out my_scan
-```
+## Installation & Configuration
 
-### Wake-on-LAN
-```sh
-./scanner.sh --wol AA:BB:CC:DD:EE:FF 192.168.1.100
-```
-
-## Requirements
-
+### Prerequisites
 - **Operating System**: macOS or Linux
-- **Shell**: zsh or bash
-- **Tools**: nmap (recommended), arp, nc/netcat, jq (optional for better JSON parsing)
-- **Network**: Permission to scan the target network
+- **Shell Environment**: bash or zsh
+- **Core Utilities**: nmap, arp, netcat (nc), jq (optional for enhanced JSON processing)
+- **Network Access**: Appropriate permissions for target network segmentation
 
-## Setup
-
-1. Make the script executable:
-   ```sh
+### Initial Setup
+1. Execute permissions configuration:
+   ```bash
    chmod +x scanner.sh
    ```
 
-2. For vendor lookup (optional but recommended):
-   - The script will automatically download the IEEE OUI database on first run
-   - Or manually create `oui.txt` with format: `OUI<TAB>Vendor Name`
+2. OUI Database initialization (optional but recommended):
+   - Automatic: Script downloads IEEE OUI database on first execution
+   - Manual: Create `oui.txt` with OUI-to-vendor mappings (format: `OUI<TAB>Vendor Name`)
 
-## Output Files
+## Usage Examples
 
-- `lan_scan_results.json`: Structured JSON data
-- `lan_scan_results.csv`: Comma-separated values for spreadsheet import
-- ASCII table display in terminal with device icons and vendor information
+### Standard Network Scan
+```bash
+./scanner.sh
+```
 
-## Legal Notice
+### Targeted Network Segmentation
+```bash
+./scanner.sh 192.168.1.0/24
+```
 
-⚠️ **Only scan networks you own or have explicit permission to test.** Unauthorized network scanning may violate laws and terms of service.
+### Comprehensive Analysis
+```bash
+./scanner.sh --deep
+```
 
-## Recent Fixes
+### Custom Output Configuration
+```bash
+./scanner.sh --out security_audit_$(date +%Y%m%d)
+```
 
-- Fixed "tr: Illegal byte sequence" error on macOS by using `LC_ALL=C` locale
-- Improved banner parsing with proper JSON handling using jq when available
-- Enhanced table formatting with dynamic column widths and text truncation
-- Expanded OUI database with comprehensive vendor list including NVIDIA, Apple, Microsoft, etc.
-- Better error handling and cross-platform compatibility
+### Remote Device Activation
+```bash
+./scanner.sh --wol AA:BB:CC:DD:EE:FF 192.168.1.100
+```
 
-## License
+## Output Specifications
 
-MIT
+### Generated Artifacts
+- `lan_scan_results.json`: Machine-readable JSON data structure
+- `lan_scan_results.csv`: Spreadsheet-compatible CSV format
+- **Terminal Display**: Formatted table with device classification and vendor information
+
+### Data Structure
+Results include IP addresses, MAC addresses, vendor identification, open ports, service banners, and device classifications for comprehensive network mapping.
+
+## Security Considerations
+
+### Legal Compliance
+⚠️ **Authorized Use Only**: This tool must only be deployed against networks and systems for which you possess explicit authorization. Unauthorized network scanning may violate applicable laws, regulations, and terms of service.
+
+### Operational Security
+- Network reconnaissance activities should be conducted during authorized testing windows
+- Results should be handled as sensitive security information
+- Compliance with organizational security policies and procedures is required
+
+## Technical Specifications
+
+### Performance Characteristics
+- **Scan Duration**: Variable based on network size and selected scanning depth
+- **Resource Usage**: Minimal system resource consumption during operation
+- **Compatibility**: Cross-platform support for macOS and Linux environments
+
+### Network Requirements
+- Sufficient network access for ICMP and TCP port scanning
+- Appropriate firewall permissions for service enumeration
+- Network latency considerations for optimal discovery performance
+
+## Troubleshooting
+
+### Common Issues
+- **Locale Errors**: macOS locale configuration resolved via `LC_ALL=C` environment setting
+- **Permission Denied**: Ensure adequate network scanning permissions
+- **Banner Parsing**: Enhanced parsing available with jq installation
+
+### Performance Optimization
+- Deep scans significantly increase scan duration
+- Large networks may require extended execution time
+- Consider network segmentation for comprehensive coverage
+
+## License & Contribution
+
+This project is licensed under the MIT License. Contributions are welcome through standard open-source collaboration processes.
+
+## Version Information
+
+Current Version: 1.0.0
+Last Updated: November 2025
