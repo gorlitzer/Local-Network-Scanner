@@ -1,6 +1,10 @@
 # Local Network Scanner
 
-A comprehensive network reconnaissance tool designed for security professionals and network administrators. This utility performs automated discovery and enumeration of devices within local network segments, providing detailed intelligence on active hosts, services, and device characteristics.
+> **TL;DR**: A powerful network reconnaissance tool that discovers devices, identifies vendors, scans ports, and grabs service banners. Perfect for security audits and network administration.
+
+![Local Network Scanner Banner](banner.svg)
+
+A comprehensive network reconnaissance tool designed for **security professionals** and **network administrators**. This utility performs automated discovery and enumeration of devices within local network segments, providing detailed intelligence on active hosts, services, and device characteristics.
 
 ## Overview
 
@@ -9,26 +13,26 @@ The Local Network Scanner conducts multi-phase network reconnaissance including 
 ## Key Capabilities
 
 ### Host Discovery & Enumeration
-- **Network Discovery**: Utilizes nmap for efficient host discovery with fallback to ICMP ping sweeps
-- **Device Identification**: Automatic vendor identification through IEEE OUI database lookup
+- **Network Discovery**: Utilizes *nmap* for efficient host discovery with fallback to *ICMP* ping sweeps
+- **Device Identification**: Automatic vendor identification through *IEEE OUI* database lookup
 - **Service Probing**: Comprehensive port scanning with service banner extraction
 
 ### Advanced Analysis
-- **Port Scanning**: Systematic enumeration of common service ports (22, 23, 53, 80, 443, 139, 445, 3389, 8080) with optional extended scanning
+- **Port Scanning**: Systematic enumeration of common service ports (`22`, `23`, `53`, `80`, `443`, `139`, `445`, `3389`, `8080`) with optional extended scanning
 - **Service Fingerprinting**: Banner grabbing and protocol analysis for service identification
 - **Device Classification**: Intelligent categorization of discovered devices with visual indicators
 
 ### Output & Integration
-- **Structured Data**: JSON and CSV export formats for downstream analysis
+- **Structured Data**: *JSON* and *CSV* export formats for downstream analysis
 - **Visual Reporting**: Formatted terminal output with device metadata
 - **Wake-on-LAN**: Network-powered device activation support
 
 ## Installation & Configuration
 
 ### Prerequisites
-- **Operating System**: macOS or Linux
-- **Shell Environment**: bash or zsh
-- **Core Utilities**: nmap, arp, netcat (nc), jq (optional for enhanced JSON processing)
+- **Operating System**: *macOS* or *Linux*
+- **Shell Environment**: *bash* or *zsh*
+- **Core Utilities**: *nmap*, *arp*, *netcat* (`nc`), *jq* (optional for enhanced JSON processing)
 - **Network Access**: Appropriate permissions for target network segmentation
 
 ### Initial Setup
@@ -38,7 +42,7 @@ The Local Network Scanner conducts multi-phase network reconnaissance including 
    ```
 
 2. OUI Database initialization (optional but recommended):
-   - Automatic: Script downloads IEEE OUI database on first execution
+   - Automatic: Script downloads *IEEE OUI* database on first execution
    - Manual: Create `oui.txt` with OUI-to-vendor mappings (format: `OUI<TAB>Vendor Name`)
 
 ## Usage Examples
@@ -71,12 +75,12 @@ The Local Network Scanner conducts multi-phase network reconnaissance including 
 ## Output Specifications
 
 ### Generated Artifacts
-- `lan_scan_results.json`: Machine-readable JSON data structure
-- `lan_scan_results.csv`: Spreadsheet-compatible CSV format
+- `lan_scan_results.json`: Machine-readable *JSON* data structure
+- `lan_scan_results.csv`: Spreadsheet-compatible *CSV* format
 - **Terminal Display**: Formatted table with device classification and vendor information
 
 ### Data Structure
-Results include IP addresses, MAC addresses, vendor identification, open ports, service banners, and device classifications for comprehensive network mapping.
+Results include *IP addresses*, *MAC addresses*, vendor identification, open ports, service banners, and device classifications for comprehensive network mapping.
 
 ## Security Considerations
 
@@ -103,18 +107,18 @@ Results include IP addresses, MAC addresses, vendor identification, open ports, 
 ## Troubleshooting
 
 ### Common Issues
-- **Locale Errors**: macOS locale configuration resolved via `LC_ALL=C` environment setting
+- **Locale Errors**: *macOS* locale configuration resolved via `LC_ALL=C` environment setting
 - **Permission Denied**: Ensure adequate network scanning permissions
-- **Banner Parsing**: Enhanced parsing available with jq installation
+- **Banner Parsing**: Enhanced parsing available with *jq* installation
 
 ### Performance Optimization
-- Deep scans significantly increase scan duration
+- *Deep scans* significantly increase scan duration
 - Large networks may require extended execution time
 - Consider network segmentation for comprehensive coverage
 
 ## License & Contribution
 
-This project is licensed under the MIT License. Contributions are welcome through standard open-source collaboration processes.
+This project is licensed under the *MIT License*. Contributions are welcome through standard open-source collaboration processes.
 
 ## Version Information
 
