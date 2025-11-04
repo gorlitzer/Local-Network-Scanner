@@ -1,0 +1,31 @@
+[
+{"ip":"172.16.10.1","reverse_dns":"","mac":"50:61:bf:92:9:a4","vendor":"Cisco Systems, Inc","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.190","reverse_dns":"","mac":"16:96:11:c4:19:d4","vendor":"","open_ports":[22],"banners":[{"port":22,"banner":"SSH-2.0-OpenSSH_9.9\Invalid SSH identification string."}]}
+,{"ip":"172.16.10.189","reverse_dns":"","mac":"de:34:b2:2e:13:d0","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.192","reverse_dns":"","mac":"7e:1:6e:f6:63:ff","vendor":"","open_ports":[22],"banners":[{"port":22,"banner":"SSH-2.0-OpenSSH_9.9"}]}
+,{"ip":"172.16.10.211","reverse_dns":"","mac":"42:af:5a:4f:3c:76","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.202","reverse_dns":"","mac":"c6:a3:90:ce:33:68","vendor":"","open_ports":[22],"banners":[{"port":22,"banner":"SSH-2.0-OpenSSH_10.0"}]}
+,{"ip":"172.16.10.200","reverse_dns":"","mac":"1a:ae:86:7b:29:77","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.212","reverse_dns":"","mac":"4a:0:a1:e1:3a:8f","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.203","reverse_dns":"","mac":"2:b1:7e:88:55:c6","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.183","reverse_dns":"","mac":"84:c0:ef:46:bf:47","vendor":"Samsung Electronics Co.,Ltd","open_ports":[8080],"banners":[{"port":8080,"banner":""}]}
+,{"ip":"172.16.10.106","reverse_dns":"","mac":"a0:ad:9f:b4:d4:ee","vendor":"ASUSTek COMPUTER INC.","open_ports":[139,445],"banners":[{"port":139,"banner":""},{"port":445,"banner":""}]}
+,{"ip":"172.16.10.191","reverse_dns":"","mac":"f0:18:98:65:a9:5c","vendor":"Apple, Inc.","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.126","reverse_dns":"","mac":"32:ee:7e:ab:27:88","vendor":"","open_ports":[22],"banners":[{"port":22,"banner":"SSH-2.0-OpenSSH_9.9"}]}
+,{"ip":"172.16.10.187","reverse_dns":"","mac":"a0:9a:8e:1f:3a:44","vendor":"Apple, Inc.","open_ports":[22],"banners":[{"port":22,"banner":"SSH-2.0-OpenSSH_9.9"}]}
+,{"ip":"172.16.10.193","reverse_dns":"","mac":"8a:3f:13:a3:e4:d9","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.209","reverse_dns":"","mac":"42:ee:3b:39:e3:25","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.206","reverse_dns":"","mac":"fa:ff:9c:53:3b:b2","vendor":"","open_ports":[22],"banners":[{"port":22,"banner":"SSH-2.0-OpenSSH_9.9"}]}
+,{"ip":"172.16.10.208","reverse_dns":"","mac":"a6:67:40:d:81:68","vendor":"","open_ports":[53],"banners":[{"port":53,"banner":""}]}
+,{"ip":"172.16.10.201","reverse_dns":"","mac":"0:17:c8:c7:98:db","vendor":"","open_ports":[21,80,443,445,515,631,9100],"banners":[{"port":21,"banner":"220 ECOSYS M6230cidn FTP server"},{"port":80,"banner":""},{"port":443,"banner":""},{"port":445,"banner":""},{"port":515,"banner":""},{"port":631,"banner":""},{"port":9100,"banner":""}]}
+,{"ip":"172.16.10.194","reverse_dns":"","mac":"42:88:0:fe:5f:62","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.178","reverse_dns":"","mac":"f6:6f:79:3b:21:3c","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.153","reverse_dns":"","mac":"c0:a8:10:cd:55:7d","vendor":"Intel Corporate","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.199","reverse_dns":"","mac":"da:6:ae:e1:ee:c7","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.195","reverse_dns":"","mac":"be:b6:2c:d8:f3:cc","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.204","reverse_dns":"","mac":"10:91:d1:19:d1:5b","vendor":"Intel Corporate","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.205","reverse_dns":"","mac":"d6:e3:70:ee:f8:50","vendor":"","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.210","reverse_dns":"","mac":"e4:1f:d5:9b:43:7b","vendor":"Intel Corporate","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.214","reverse_dns":"","mac":"f8:fe:5e:42:2:43","vendor":"Intel Corporate","open_ports":[],"banners":[]}
+,{"ip":"172.16.10.215","reverse_dns":"","mac":"96:97:ee:db:1b:d","vendor":"","open_ports":[],"banners":[]}
+]

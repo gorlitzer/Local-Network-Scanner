@@ -30,8 +30,8 @@ OUT_PREFIX="lan"
 CIDR=""
 DEEP=0
 TIMEOUT_CMD="timeout"   # fallback if available; macOS uses gtimeout (from coreutils)
-COMMON_PORTS=(22 23 53 80 443 139 445 3389 8080 1900 5353 3306 5900)
-DEEP_PORTS=(21 22 23 25 53 67 68 80 110 139 143 443 445 587 3306 3389 5900 8080 8443 8888 5353 1900)
+COMMON_PORTS=(22 23 53 80 443 139 445 515 631 3389 8080 9100 1900 5353 3306 5900)
+DEEP_PORTS=(21 22 23 25 53 67 68 80 110 139 143 161 443 445 515 587 631 3306 3389 5900 8080 8443 8888 9100 5353 1900)
 
 # check for command presence
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
@@ -408,14 +408,15 @@ icon_for_type() {
 }
 
 classify_type() {
-  local vendor="$1"; local hostname="$2"; local mac="$3"
+  local vendor="$1"; local hostname="$2"; local mac="$3"; local ports="$4"
   if [[ "$hostname" =~ (raspberry|pi) ]]; then echo "pi"; return; fi
   if [[ "$hostname" =~ (OPPO|A96) ]]; then echo "phone"; return; fi
   if [[ "$hostname" =~ (phone|android|oppo|iphone|ios) ]]; then echo "phone"; return; fi
   if [[ "$hostname" =~ (xbox|XBOX) ]]; then echo "xbox"; return; fi
   if [[ "$hostname" =~ (openwrt|OpenWrt) ]]; then echo "router"; return; fi
   if [[ "$vendor" =~ (Cisco|OpenWrt|Ubiquiti|TP-Link|Netgear|D-Link|Technicolor) ]]; then echo "router"; return; fi
-  if [[ "$vendor" =~ (HP|Canon|Epson|Brother) ]]; then echo "printer"; return; fi
+  if [[ "$vendor" =~ (HP|Canon|Epson|Brother|Kyocera|Xerox|Lexmark|Ricoh) ]]; then echo "printer"; return; fi
+  if [[ "$ports" =~ (515|631|9100) ]]; then echo "printer"; return; fi
   if [[ "$vendor" =~ (Microsoft|Apple|Dell|Lenovo|Acer|Asus|PC) ]]; then echo "pc"; return; fi
   if [[ "$vendor" =~ (Camera|Hikvision|Axis) ]]; then echo "camera"; return; fi
   echo "other"
@@ -448,7 +449,7 @@ while read -r line; do
   vendor=$(echo "$vendor" | tr -d '\r')
   
   # Classify device
-  dtype=$(classify_type "$vendor" "$rd" "")
+  dtype=$(classify_type "$vendor" "$rd" "" "$ports")
   icon=$(icon_for_type "$dtype")
   
   # Build display line
