@@ -221,13 +221,27 @@ vendor_lookup() {
 # 4) reverse DNS
 reverse_dns() {
   local ip="$1"
+  local name=""
+
+  # 1. Try standard Unicast DNS
   if has_cmd host; then
-    host "$ip" 2>/dev/null | awk '/domain name pointer/ {print $5}' | sed 's/\.$//' || true
+    name=$(host "$ip" 2>/dev/null | awk '/domain name pointer/ {print $5}' | sed 's/\.$//')
   elif has_cmd dig; then
-    dig -x "$ip" +short | sed 's/\.$//' | head -n1 || true
-  else
-    echo ""
+    name=$(dig -x "$ip" +short | sed 's/\.$//' | head -n1)
   fi
+
+  # 2. If no name, try Multicast DNS (mDNS)
+  # Use short timeout to avoid hanging
+  if [[ -z "$name" ]] && has_cmd dig; then
+    name=$(dig -x "$ip" @224.0.0.251 -p 5353 +short +time=1 +tries=1 2>/dev/null | sed 's/\.$//' | head -n1)
+  fi
+
+  # 3. If still no name, try NetBIOS (nmblookup) if available
+  if [[ -z "$name" ]] && has_cmd nmblookup; then
+    name=$(nmblookup -A "$ip" 2>/dev/null | awk '/<00>/ && !/GROUP/ {print $1; exit}')
+  fi
+
+  echo "$name"
 }
 
 # 5) probe port (fast). Using nc if available, otherwise /dev/tcp.
@@ -275,11 +289,13 @@ scan_host() {
   local ports_found=()
   declare -a port_banners
   if has_cmd nmap; then
+    # Add timeout to prevent hanging (30s per host max)
+    local nmap_timeout="30s"
     if [[ $DEEP -eq 1 ]]; then
       # more thorough
-      nmout=$(nmap -Pn -sT -p "$(IFS=,; echo "${portset[*]}")" --open -n -oG - "$ip" 2>/dev/null || true)
+      nmout=$(nmap -Pn -sT -p "$(IFS=,; echo "${portset[*]}")" --open -n --host-timeout "$nmap_timeout" -oG - "$ip" 2>/dev/null || true)
     else
-      nmout=$(nmap -Pn -sT -p "$(IFS=,; echo "${portset[*]}")" --open -n -oG - "$ip" 2>/dev/null || true)
+      nmout=$(nmap -Pn -sT -p "$(IFS=,; echo "${portset[*]}")" --open -n --host-timeout "$nmap_timeout" -oG - "$ip" 2>/dev/null || true)
     fi
     # parse open ports lines
     ports_found=($(echo "$nmout" | awk '/Ports:/ {gsub(/,/," "); for(i=1;i<=NF;i++) if($i ~ /[0-9]+\/open/) { split($i,a,"/"); print a[1] } }' || true))
@@ -345,18 +361,28 @@ discover_hosts
 collect_arp
 
 # iterate hosts and scan
-echo "Scanning discovered hosts for ports and banners..."
+total_hosts=$(wc -l < "$DISCOVERED_IPS" | tr -d ' ')
+echo "Scanning discovered hosts for ports and banners... (0/$total_hosts)"
+scanned=0
 while read -r ip; do
   if [[ -z "$ip" ]]; then continue; fi
   scan_host "$ip" &
+  scanned=$((scanned + 1))
   # throttle concurrency
   running=$(jobs -rp | wc -l)
   while [[ $running -ge 60 ]]; do
     sleep 0.2
     running=$(jobs -rp | wc -l)
   done
+  # show progress every 10 hosts or when starting new batch
+  if (( scanned % 10 == 0 )) || (( running < 5 )); then
+    printf "\rScanning discovered hosts for ports and banners... (%d/$total_hosts)" "$scanned" >&2
+  fi
 done < "$DISCOVERED_IPS"
+printf "\rScanning discovered hosts for ports and banners... (%d/$total_hosts)\n" "$scanned" >&2
+echo "Waiting for all scans to complete..."
 wait
+echo "All scans completed."
 
 # create final JSON array
 echo "[" > "$RESULTS_JSON"
