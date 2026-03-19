@@ -103,7 +103,6 @@ Desktop.ini
 
 # Custom scan output
 *_results.*
-!lan_scan_results.json
 !README.md
 
 # OUI database files (can be regenerated)
