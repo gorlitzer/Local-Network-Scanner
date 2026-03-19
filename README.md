@@ -41,7 +41,13 @@ The Local Network Scanner conducts multi-phase network reconnaissance including 
    chmod +x scanner.sh
    ```
 
-2. OUI Database initialization (optional but recommended):
+2. Install as a global command (optional):
+   ```bash
+   sudo ln -sf "$(pwd)/scanner.sh" /usr/local/bin/lanscan
+   ```
+   Now you can run `lanscan` from anywhere instead of `./scanner.sh`.
+
+3. OUI Database initialization (optional but recommended):
    - Automatic: Script downloads *IEEE OUI* database on first execution
    - Manual: Create `oui.txt` with OUI-to-vendor mappings (format: `OUI<TAB>Vendor Name`)
 
